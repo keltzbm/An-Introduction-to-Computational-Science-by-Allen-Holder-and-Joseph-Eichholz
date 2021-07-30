@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\geometry{letterpaper, margin = 1in}
+
+\begin{document}
+	
+	\begin{flushleft}	
+	
+		Brandon M. Keltz\\
+		An Introduction to Computational Science by Allen Holder and Joseph Eichholz\\
+		Chapter 2 - Solving Systems of Equations\\
+		November 15, 2019\\\
+		
+		\textit{Problem 2}. Show that the product of upper (lower) triangular matrices is upper (lower) triangular. \\\
+		
+		\begin{proof}
+		
+			Without loss of generality, let $A$ and $B$ be upper triangular matrices, where $A$ and $B$ have dimensions $m \times n$ and $n \times m$, respectively. The product of $A$ and $B$ is
+			\begin{align*}
+				c_{ij} = \sum_{k = 1}^{\min \{ m, n \}} a_{ik} b_{kj} = \sum_{k = 1}^{i - 1} a_{ik} b_{kj} + \sum_{k = i}^j a_{ik} b_{jk} + \sum_{k = j + 1}^{\min \{ m, n \}} a_{ik} b_{kj}.
+			\end{align*}
+			Notice that for all $k < i$ we have
+			\begin{align*}
+				\sum_{k = 1}^{i - 1} a_{ik} b_{kj} = 0
+			\end{align*}
+			because $A$ is upper triangular. Similarly, for all $k > j$ we have
+			\begin{align*}
+				\sum_{k = j + 1}^{\min \{ m, n \}} a_{ik} b_{kj} = 0
+			\end{align*}
+			because $B$ is upper triangular. This gives 
+			\begin{align*}
+				c_{ij} = \sum_{k = i}^j a_{ik} b_{jk},
+			\end{align*}
+			which is zero for $j < i$. So, by definition $C$ must also be an upper triangular matrix.			
+		
+		\end{proof}
+	
+	\end{flushleft}
+	
+\end{document}

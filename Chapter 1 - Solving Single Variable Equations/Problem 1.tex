@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\geometry{letterpaper, margin = 1in}
+
+\begin{document}
+	
+	\begin{flushleft}	
+	
+		Brandon M. Keltz\\
+		An Introduction to Computational Science by Allen Holder and Joseph Eichholz\\
+		Chapter 1 - Solving Single Variable Equations\\
+		September 7, 2019\\\
+		
+		\textit{Problem 1}. Suppose the method of bisection is initialized with the interval $\left[-10^4, 10^4 \right]$. How many iterations are needed to guarantee that the $k$-th interval is no wider than $10^{-8}$?\\\
+		
+		We know that bisection converges
+		\begin{align*}
+			\frac{b - a}{2^k} \leq \epsilon,
+		\end{align*}
+		where $a$ and $b$ are the left and right endpoints, $k$ is the number of iterations, and $\epsilon$ is the tolerance. From the problem statement, we have
+		\begin{align*}
+			\frac{10^4 + 10^4}{2^k} \leq 10^{-8} \iff \frac{10^4}{2^{k - 1}} \leq 10^{-8} \iff 10^{12} \leq 2^{k - 1}.
+		\end{align*}
+		Since $2^{k - 1} > 0$ for all $k \in \mathbb{N}$, we have
+		\begin{align*}
+			12 \ln \left( 10 \right) & \leq \left( k - 1 \right) \ln \left( 2 \right) \\
+			\frac{12 \ln \left( 2 \right) + 12 \ln \left( 5 \right)}{\ln \left( 2 \right)} + 1 & \leq k \\
+			\frac{13 \ln \left( 2 \right) + 12 \ln \left( 5 \right)}{\ln \left( 2 \right)} & \leq k.
+		\end{align*}
+		We have
+		\begin{align*}
+			k \geq \frac{13 \ln \left( 2 \right) + 12 \ln \left( 5 \right)}{\ln \left( 2 \right)} \approx 40.8631,
+		\end{align*}
+		which means that we need 41 iterations to guarantee the $k$-th interval is no wider than $10^{-18}$.
+	
+	\end{flushleft}
+	
+\end{document}

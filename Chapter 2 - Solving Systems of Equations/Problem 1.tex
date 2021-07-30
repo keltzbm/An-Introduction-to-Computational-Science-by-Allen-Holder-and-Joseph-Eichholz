@@ -1,0 +1,141 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\geometry{letterpaper, margin = 1in}
+
+\begin{document}
+	
+	\begin{flushleft}	
+	
+		Brandon M. Keltz\\
+		An Introduction to Computational Science by Allen Holder and Joseph Eichholz\\
+		Chapter 2 - Solving Systems of Equations\\
+		October 27, 2019\\\
+		
+		\textit{Problem 1}. Show that the inverse of an elementary matrix is another elementary matrix. Give $3 \times 3$ examples. \\\
+		
+		\begin{proof}
+		
+			Notice that there are three elementary matrix operations, multiplication of a row, addition of two rows, and swapping of two rows. Let $A$ be an $m \times n$ matrix. Then, let $E_1$ be the matrix that multiplies the $i^\text{th}$ row of $A$ by a nonzero constant $c \in \mathbb{R}$, which can be represented as $A'_{ik} = cA_{ik}$ for all $k \in \left\{ 1, 2, \ldots, n \right\}$. The $A'$ matrix is the resulting matrix after $E_1$ is applied to $A$. Let $E_1'$ be the reverse operation, which is multiplying the $i^\text{th}$ row of $A'$ by $\frac{1}{c}$. Equivalently, this becomes $A''_{ik} = \frac{1}{c} A'_{ik}$ for all $k \in \left\{ 1, 2, \ldots, n \right\}$, where $A''$ is the matrix after applying $E_1'$ to $A'$. We know this is a valid operation since $\frac{1}{c} \in {R}$, which means 
+			\begin{align*}
+				A''_{ik} = \frac{1}{c} A'_{ik} = \frac{1}{c} \cdot c A_{ik} = A_{ik}.
+			\end{align*}	
+			Thus, $E_1 E_1' = I$ and for our example we multiply the second row by $c$ and in matrix form
+			\begin{align*}
+				E_1 = \begin{bmatrix}
+					1 & 0 & 0 \\
+					0 & c & 0 \\
+					0 & 0 & 1 \\
+				\end{bmatrix} \quad \text{and} \quad
+				E_1' = \begin{bmatrix}
+					1 & 0 & 0 \\
+					0 & \frac{1}{c} & 0 \\
+					0 & 0 & 1 \\
+				\end{bmatrix},
+			\end{align*}
+			which gives
+			\begin{align*}
+				E_1 E_1' = \begin{bmatrix}
+					1 & 0 & 0 \\
+					0 & c & 0 \\
+					0 & 0 & 1 \\
+				\end{bmatrix}
+				\begin{bmatrix}
+					1 & 0 & 0 \\
+					0 & \frac{1}{c} & 0 \\
+					0 & 0 & 1 \\
+				\end{bmatrix} = 
+				\begin{bmatrix}
+					1 & 0 & 0 \\
+					0 & c \cdot \frac{1}{c} & 0 \\
+					0 & 0 & 1 \\
+				\end{bmatrix} = 
+				\begin{bmatrix}
+					1 & 0 & 0 \\
+					0 & 1 & 0 \\
+					0 & 0 & 1 \\
+				\end{bmatrix} = I.
+			\end{align*}
+			For the addition of two rows we let $E_2$ be the elementary matrix representing the addition of row $j$ to row $i$, which is $A'_{ik} = A_{ik} + A_{jk}$ for all $k \in \{ 1, 2, \ldots, n \}$. Let $E_2'$ be the reverse operation, which is subtracting row $j$ from row $i$. Similarly written as $A''_{ik} = A'_{ik} - A'_{jk}$ for all $k \in \{ 1, 2, \ldots, n \}$. Notice that because $A_{jk}$ is unchanged then we have
+			\begin{align*}
+				A''_{ik} = A'_{ik} - A'_{jk} = A_{ik} + A_{jk} - A_{jk} = A_{ik}
+			\end{align*}
+			for all $k \in \{ 1, 2, \ldots, n \}$. We know that the second operation must be an elementary matrix by definition because subtraction is just addition of the additive identity. Our example for row addition is adding row one and three to row two and in matrix form
+			\begin{align*}
+				E_2 = \begin{bmatrix}
+					1 & 0 & 0 \\
+					1 & 1 & 1 \\ 
+					0 & 0 & 1
+				\end{bmatrix} \quad \text{and} \quad
+				E_2' = \begin{bmatrix}
+					1 & 0 & 0 \\
+					-1 & 1 & -1 \\
+					0 & 0 & 1
+				\end{bmatrix},
+			\end{align*}
+			which gives 
+			\begin{align*}
+				E_2 E_2' = \begin{bmatrix}
+					1 & 0 & 0 \\
+					1 & 1 & 1 \\ 
+					0 & 0 & 1
+				\end{bmatrix}
+				\begin{bmatrix}
+					1 & 0 & 0 \\
+					-1 & 1 & -1 \\
+					0 & 0 & 1
+				\end{bmatrix}
+				= \begin{bmatrix}
+					1 & 0 & 0 \\
+					1 - 1 & 1 & -1 + 1 \\
+					0 & 0 & 1
+				\end{bmatrix}
+				= \begin{bmatrix}
+					1 & 0 & 0 \\
+					0 & 1 & 0 \\
+					0 & 0 & 1
+				\end{bmatrix}
+				= I.
+			\end{align*}
+			Lastly, we have a row swap operation. So, we let $E_3$ be the elementary matrix representing the swap of rows $i$ and $j$. In matrix form we have $A'_{jk} = A_{ik}$ and $A'_{ik} = A_{jk}$, where $A'$ represents the matrix after the multiplication of $E_3$. Let $E_3'$ be the reverse operation of swapping rows $i$ and $j$ again, which gives $E_3' = E_3$. So, we have $A''_{ik} = A'_{jk} = A_{ik}$ and $A''_{jk} = A'_{ik} = A_{jk}$, where $A''$ is the matrix after the inverse operation. Thus, we have that $E_3 E_3' = I$. For our example we swap the first and second rows, which is
+			\begin{align*}
+				E_3 = E_3' = \begin{bmatrix}
+					0 & 1 & 0 \\
+					1 & 0 & 0 \\
+					0 & 0 & 1 \\
+				\end{bmatrix}.
+			\end{align*}
+			Notice we have
+			\begin{align*}
+				E_3 E_3' = \begin{bmatrix}
+					0 & 1 & 0 \\
+					1 & 0 & 0 \\
+					0 & 0 & 1
+				\end{bmatrix}
+				\begin{bmatrix}
+					0 & 1 & 0 \\
+					1 & 0 & 0 \\
+					0 & 0 & 1
+				\end{bmatrix}
+				= \begin{bmatrix}
+					1 & 0 & 0 \\
+					0 & 1 & 0 \\
+					0 & 0 & 1
+				\end{bmatrix}
+				= I.
+			\end{align*}
+		
+		\end{proof}
+	
+	\end{flushleft}
+	
+\end{document}

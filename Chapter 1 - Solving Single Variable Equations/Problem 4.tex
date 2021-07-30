@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\geometry{letterpaper, margin = 1in}
+
+\begin{document}
+	
+	\begin{flushleft}	
+	
+		Brandon M. Keltz\\
+		An Introduction to Computational Science by Allen Holder and Joseph Eichholz\\
+		Chapter 1 - Solving Single Variable Equations\\
+		September 7, 2019\\\
+		
+		\textit{Problem 4}. Show that the sequence defined by the recursive statement $d_{k + 1} = \frac{d_k}{2}$, with $d_1 = a$ converges with order 1 for any constant $a$. What does this say about the bisection method, especially if compared to Newton's method? \\\
+		
+		\begin{proof}
+			
+			Notice that the sequence
+			\begin{align*}
+				d_{k + 1} = \frac{d_k}{2},
+			\end{align*}					
+			where $d_1 = a$ has a closed-form solution
+			\begin{align*}
+				d_{k + 1} = \frac{a}{2^k}.
+			\end{align*}
+			Linear convergence of a sequence guarantees that
+			\begin{align*}
+				\lim_{k \to \infty} \frac{\left| x^{k + 1} - x^* \right|}{\left| x^k - x^* \right|^p} < \infty,
+			\end{align*}
+			where $p = 1$. Without loss of generality, consider $a$ nonzero. From the closed-form solution we have
+			\begin{align*}
+				\lim_{k \to \infty} \frac{\left| x^{k + 1} - x^* \right|}{\left| x^k - x^* \right|} = \lim_{k \to \infty} \frac{\left| a 2^{-k} - 0 \right|}{\left| a 2^{1 - k} - 0 \right|} = \lim_{k \to \infty} \frac{\left| a 2^{-k} \right|}{\left| a 2^{1 - k} \right|} = \lim_{k \to \infty} \frac{\left| 2^{-k} \right|}{\left| 2^{1 - k} \right|} = \lim_{k \to \infty} \frac{1}{2} = \frac{1}{2} < \infty,
+			\end{align*}
+			which gives us order 1 convergence for when $a$ is nonzero. 
+			
+		\end{proof}
+		
+		This shows the bisection method has a linear convergence. This comes from the iteration limit based on the bracketed interval we have
+		\begin{align*}
+			\varepsilon \geq \frac{b - a}{2^k},
+		\end{align*}
+		where $k$ is the number of iterations. The same analysis can be done since the form of the sequence and the error are equivalent to a constant. However, Newton's method has a quadratic convergence, which means that the bisection and Newton's method for this function would have the same order of convergence.
+	
+	\end{flushleft}
+	
+\end{document}

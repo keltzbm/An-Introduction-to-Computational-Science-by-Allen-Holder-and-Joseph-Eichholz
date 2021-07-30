@@ -1,0 +1,57 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\geometry{letterpaper, margin = 1in}
+
+\begin{document}
+	
+	\begin{flushleft}	
+	
+		Brandon M. Keltz\\
+		An Introduction to Computational Science by Allen Holder and Joseph Eichholz\\
+		Chapter 2 - Solving Systems of Equations\\
+		November 18, 2019\\\
+		
+		\textit{Problem 3}. Let $Q \succ 0$ be an $n \times n$ matrix and let $v_1, v_2, \ldots, v_n$ be a collection of $Q$-conjugate $n$-vectors. Show that the collection is linearly independent. \\\
+		
+		\begin{proof}
+		
+			Consider the linear combination of the $Q$-conjugate $n$-vectors such that
+			\begin{align*}
+				\alpha_1 v^1 + \alpha_2 v^2 + \ldots + \alpha_n v^n = 0,
+			\end{align*}
+			where $\alpha_i \in \mathbb{R}$ for all $i \in \left\{ 1, 2, \ldots, n \right\}$. Since $Q \succ 0$
+			\begin{align*}
+				\alpha_1 v^1 + \alpha_2 v^2 + \ldots + \alpha_n v^n = 0 \iff \alpha_1 Q v^1 + \alpha_2 Q v^2 + \ldots + \alpha_n Q v^n = 0.
+			\end{align*}
+			Consider an arbitrary $v^j \in \left\{ v^1, v^2, \ldots, v^n \right\}$. We now have 
+			\begin{align*}
+				\alpha_1 Q v^1 + \alpha_2 Q v^2 + \ldots + \alpha_n Q v^n = 0 \iff \alpha_1 \left( v^i \right)^T Q v^1 + \alpha_2, \left( v^i \right)^T Q v^2 + \ldots + \alpha_n \left( v^i \right)^T Q v^n = 0,
+			\end{align*}
+			which gives for $i \neq j$
+			\begin{align*}
+				\alpha_j \left( v^i \right)^T Q v^j = 0
+			\end{align*}
+			because every vector $v^i \in \left\{ v^1, v^2, \ldots, v^n \right\}$ is $Q$-conjugate. Notice for $i = j$ we have
+			\begin{align*}
+				\alpha_i \left( v^i \right)^T Q v^i = 0 \iff \alpha_i ||v^i||_Q = 0 \implies \alpha_i = 0.
+			\end{align*}
+			Since $\alpha_i$ is arbitrary, then this is applied to every vector in the collection. Thus, $\alpha_i = 0$ for all $i \in \left\{ 1, 2, \ldots, n \right\}$, which means the collection must be linear independent. 
+		
+		\end{proof}
+	
+	\end{flushleft}
+	
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\geometry{letterpaper, margin = 1in}
+
+\begin{document}
+	
+	\begin{flushleft}	
+	
+		Brandon M. Keltz\\
+		An Introduction to Computational Science by Allen Holder and Joseph Eichholz\\
+		Chapter 1 - Solving Single Variable Equations\\
+		September 7, 2019\\\
+		
+		\textit{Problem 2}. Let 
+			\begin{align*}
+				g_q(x) = \begin{cases}
+					\frac{x}{\left| x \right|} e^{-x^{-2q}}, & x \neq 0 \\
+					0, & x = 0.
+					\end{cases}
+			\end{align*}
+			Show that if $x$ is a nonzero value in $\left( -1, 1 \right)$, then $g_q (x) \to 0$ as $q \to \infty$. Explain why the methods of bisection and linear interpolation might have an advantage over the method of secants and Newton's method as $q$ increases.
+			
+			\begin{proof} 
+			
+				Let $x$ be a nonzero value in $(-1, 1)$ and 
+				\begin{align*}
+					g_q(x) = \begin{cases}
+					\frac{x}{\left| x \right|} e^{-x^{-2q}}, & x \neq 0 \\
+					0, & x = 0.
+					\end{cases}
+				\end{align*}
+				Given $\varepsilon > 0$, we select $q$ such that
+				\begin{align*}
+					-x^{-2 q} < \ln \left( \varepsilon \right)
+				\end{align*}
+				for all $q \in \mathbb{N}$. Notice that $q$ will be dependent on $\varepsilon$ and $x$. Because $x$ is a nonzero value in $\left( -1, 1 \right)$ we have
+				\begin{align*}
+					\left| g_q(x) - 0 \right| = \left| \frac{x}{\left| x \right|} e^{-x^{-2q}} \right| = \left| e^{-x^{-2q}} \right|.
+				\end{align*}
+				We now have
+				\begin{align*}
+					\left| e^{-x^{-2q}} \right| & < \left| e^{\ln \left( \varepsilon \right)} \right| = \varepsilon.
+				\end{align*}
+				Therefore, by definition we have that $q_q(x) \to 0$ as $q \to \infty$.
+				
+			\end{proof}
+			
+			Bisection and interpolation have an advantage because we are guaranteed convergence with the bracketing method. Bisection is also particularly advantageous because there isn't any information from the derivative. The method of secants and Newton's method become increasingly difficult as $q \to \infty$. This is because there isn't a bracketing method that determines if there is a root bounded in the interval. Particularly the secants method has difficultly because of the inputs, which must be arbitrarily close to the root to converge. Newton's method will become less advantageous as $q \to \infty$ because $g_q(x)$ starts to resemble a square wave. This means that we would need to know the root before we started. If we start anywhere but the root, Newton's method will have a division by 0.
+	
+	\end{flushleft}
+	
+\end{document}

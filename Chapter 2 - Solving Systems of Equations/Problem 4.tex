@@ -1,0 +1,49 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\geometry{letterpaper, margin = 1in}
+
+\begin{document}
+	
+	\begin{flushleft}	
+	
+		Brandon M. Keltz\\
+		An Introduction to Computational Science by Allen Holder and Joseph Eichholz\\
+		Chapter 2 - Solving Systems of Equations\\
+		November 18, 2019\\\
+		
+		\textit{Problem 4}. Suppose $A$ is an $m \times n$ matrix such that the $\text{rank}(A) = n$. Show that $A^T A \succ 0$. \\\
+		
+		\begin{proof}
+		
+			Let the column vectors of $A$ be denoted $A_i$ for all $i \in \left\{ 1, 2, \ldots, n \right\}$, which is
+			\begin{align*}
+				A = \begin{bmatrix}
+					\vline & \vline & \ & \vline \\
+					A_1 & A_2 & \ldots & A_n \\
+					\vline & \vline & \ & \vline
+				\end{bmatrix}.
+			\end{align*}
+			Since the $\text{rank}(A) = n$, this means that the collection of the vectors $A_i$ are linearly independent. By this linear independence we have
+			\begin{align*}
+				0 < \left| \left| Ax \right| \right| = \left( Ax \right)^T Ax = x^T A^T A x,
+			\end{align*}
+			which gives $x^T A^T A x > 0$. 
+		
+		\end{proof}
+	
+	\end{flushleft}
+	
+\end{document}
